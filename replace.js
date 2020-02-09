@@ -23,6 +23,6 @@ function GetReplacedHelper(text, replaceKey) {
 }
 
 function GetReplaced(text) {
-    text = this.GetReplacedHelper(text, 'replaceText');
-    document.getElementById('result').value = this.GetReplacedHelper(text, 'replaceSync');
+    text = this.GetReplacedHelper(text, 'replaceSync');
+    document.getElementById('result').value = this.GetReplacedHelper(text, 'replaceText');
 }
