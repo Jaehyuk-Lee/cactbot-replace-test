@@ -1,5 +1,4 @@
 function GetReplacedHelper(text, replaceKey) {
-    let locale = 'ko';
     let replacementText = document.getElementById("replacer").value;
     if(replacementText[replacementText.length-1] == ','){
         replacementText = replacementText.substring(0, replacementText.length-1);
@@ -20,9 +19,20 @@ function GetReplacedHelper(text, replaceKey) {
         }
     //}
     return text;
+
+}function GetReplacedCommon(text) {
+    let locale = document.getElementById("locale").value;
+    let keys = Object.keys(commonReplacement);
+    console.log(keys);
+    for (let j = 0; j < keys.length; ++j){
+        let re = new RegExp(keys[j],"gi");
+        text = text.replace(re, commonReplacement[keys[j]][locale])
+    }
+    return text;
 }
 
 function GetReplaced(text) {
     text = this.GetReplacedHelper(text, 'replaceSync');
-    document.getElementById('result').value = this.GetReplacedHelper(text, 'replaceText');
+    text = this.GetReplacedHelper(text, 'replaceText');
+    document.getElementById('result').value = this.GetReplacedCommon(text);
 }
